@@ -1,0 +1,101 @@
+// @import "reset";
+
+$arkaPlanRenk:rgb(57, 77, 170);  
+$baslikRengi:  rgb(102, 177, 195);
+$baslikFontStili:Arial, Helvetica, sans-serif; 
+$buttonRenkleri:  rgb(141, 59, 141);
+$sayiRenkleri: #ffffff;
+$genelFontBoyutu: 30px;
+$icBosluk: 0.9rem;
+$borderKaldir: none;
+
+@mixin kenarlar($kirmizi, $mavi) {//bu parametreleri istediğimiz classta @include kenarlar diye kullanabilirz
+    color : $kirmizi;
+    background-color: $mavi;
+}
+
+//@extend bir classı başka bir classa ekler
+.altbutonlar{//bu class'ı  @extend ile .fullCointerBtn clasına atadık
+     padding: .5rem  .7rem;
+     outline: none;
+     border: $borderKaldir;
+     margin: 2rem 1rem;
+     background-color: rgb(243, 233, 93);
+     border-radius: 3rem;
+     cursor: pointer;
+     transition: .8s;
+
+     &:hover{
+         color: white;
+         background-color: rgb(119, 107, 170);
+     }
+
+}
+
+body{
+    background-color: $arkaPlanRenk;
+    font-size: $genelFontBoyutu;
+
+
+
+    //Nestig yapısı iç içe kullanılan tagler
+    //header içerisindeki tğm taglaeri kaplar özellik veriri
+    header{
+        padding: $icBosluk;
+        text-align: center;
+        
+
+        .anasayfa{
+          border: 2px solid red;
+          border-radius: 0.8rem;
+          width: 100%;
+          margin: 0px auto;
+
+        
+            h1{
+                color: $baslikRengi;
+                font-family: $baslikFontStili;
+            }
+
+            .sayi1, .sayi2, .sayi3{
+               color: $sayiRenkleri; 
+               font-size: 4rem;
+            }
+
+            #btn1, #btn2, #btn3{
+                background-color: $buttonRenkleri;
+                border: $borderKaldir;
+                border-radius: .8rem;
+                padding: .2rem 1.2rem;
+                font-size: .7rem;
+                outline: none;
+                cursor: pointer;
+                transition: 1s;
+                font-size: 2rem;
+
+                //btn1 btn2 btn3 ün üzerine geldiğin zaman
+                &:hover{//& btn1 2 3 şunları yap ve& hover da yap manasında
+                    transform: scale(1.1); 
+                }
+            }
+
+            .fullCounterBtn{ 
+                //yukarikjadi albutonlar clasını .fullCounterBtn clasına monte ettik
+                 @extend .altbutonlar;
+                 @include kenarlar(red, orange);//@mixin kenarlar($kirmizi, $mavi) dan aldım //parametreleri aldım ve değer atadım red orange diye
+                 font-size: 2rem;
+    
+            }
+
+            .clearBtn{
+                @extend .altbutonlar;
+                font-size: 2rem;
+
+            }
+
+        }
+    }
+
+
+
+}
